@@ -564,8 +564,8 @@ async def smart_maintenance(userinput: pdm_inputs, current_user: User = Depends(
                         # print('new_f_sub -',new_f_sub)
                         new_f = pd.concat([new_f,pd.DataFrame({'fault_status':new_f_sub},index=[llids])])
                     # if ('Blow-by in combustion chamber' == fault_cats)&(engs_cyl=='Cyl_5'):
-                    # if 'Blow-by in combustion chamber' == fault_cats:
-                    #     new_f['fault_status'] = '0'
+                    if 'Blow-by in combustion chamber' == fault_cats:
+                        new_f['fault_status'] = '0'
                     trigger = exists_consecutively(new_f['fault_status'],'0')
                     if trigger == True:
                         upload_date  = datetime.now().strftime("%Y-%m-%d")
